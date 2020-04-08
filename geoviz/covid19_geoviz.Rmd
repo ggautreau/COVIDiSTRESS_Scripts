@@ -1,0 +1,57 @@
+---
+title: "Nb Answers"
+author: "Gautreau G."
+date: "April 8, 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(plotly)
+library(dplyr)
+library(rworldmap)
+
+data = read.csv("../covid_06042020_choice_values.csv", header=T, stringsAsFactors=F)
+data = data[3:nrow(data),]
+```
+
+## # of answers
+
+Example of a geographical plot
+
+```{r nb_answers, echo=FALSE, warning=FALSE, plotly=TRUE}
+#https://www.r-graph-gallery.com/330-bubble-map-with-ggplot2.html
+#https://egallic.fr/en/european-map-using-r/
+
+nb_rep_by_country = table(data$Country)
+nb_rep_by_country[names(nb_rep_by_country)!=""]
+names(nb_rep_by_country) <- replace(names(nb_rep_by_country), 
+                     names(nb_rep_by_country) %in% c("- other","Korea, South","Cabo Verde","Czech Republic","North Macedonia","Bosnia and Herzegovina","Korea, North","The Bahamas","Dominican Republic","Côte d’Ivoire","Congo, Democratic Republic of the","Congo, Republic of the","Micronesia, Federated States of","Sudan, South","Guinea-Bissau","Antigua and Barbuda","Saint Vincent and the Grenadines"), 
+                     c(NA,"S. Korea","Cape Verde","Czech Rep.","Macedonia","Bosnia and Herz.","N. Korea","Bahamas","Dominican Rep. Dominica","Ivory Coast","Congo (Kinshasa)","Congo (Brazzaville)","Micronesia","S. Sudan","Guinea Bissau","Antigua and Barb.","St. Vin. and Gren."))
+
+worldMap <- getMap()
+countriesCoords <- lapply(which(!worldMap$NAME%in%c("Antarctica")), function(i){
+  df <- data.frame(worldMap@polygons[[i]]@Polygons[[1]]@coords)
+  df$country =as.character(worldMap$NAME[i])
+  colnames(df) <- list("long", "lat", "country")
+  return(df)
+})
+
+countriesCoords <- do.call("rbind", countriesCoords)
+
+
+countriesTable <- as.data.frame(nb_rep_by_country)
+colnames(countriesTable) <- c("country","nb_answers")
+countriesCoords$nb_answers <- countriesTable$nb_answers[match(countriesCoords$country,countriesTable$country)]
+
+countriesCoords <- countriesCoords %>%
+        mutate( country_text=paste0(
+                "Country: ", country,"\n",
+                "# of answers: ", nb_answers))
+
+p <- ggplot() + 
+     geom_polygon(data = countriesCoords, aes(x = long, y = lat, group = country, fill = nb_answers,text=country_text), colour = "black", size = 0.1) +
+     scale_fill_gradient(name = "# of answers")
+
+ggplotly(p, tooltip="text")
+```
