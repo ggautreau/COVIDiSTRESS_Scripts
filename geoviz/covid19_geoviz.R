@@ -1,11 +1,5 @@
----
-title: "Nb Answers"
-author: "Gautreau G."
-date: "April 8, 2020"
-output: html_document
----
+#!/usr/bin/env Rscript
 
-```{r setup, include=FALSE}
 library(ggplot2)
 library(plotly)
 library(dplyr)
@@ -13,13 +7,7 @@ library(maps)
 
 data = read.csv("../covid_06042020_choice_values.csv", header=T, stringsAsFactors=F)
 data = data[3:nrow(data),]
-```
 
-## # of answers
-
-Example of a geographical plot
-
-```{r nb_answers, echo=FALSE, warning=FALSE, plotly=TRUE}
 world_map <- map_data("world")
 world_map$country = world_map$region
 
@@ -97,4 +85,3 @@ p <- ggplot(world_map) +
      theme_void()
 
 ggplotly(p, tooltip="text")
-```
