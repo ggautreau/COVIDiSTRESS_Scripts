@@ -93,7 +93,7 @@ world_map <- world_map %>%
 
 p <- ggplot(world_map) +
      geom_polygon(aes( x = long, y = lat, group = group, fill = nb_answers, text = country_text), colour = "black", size = 0.2)+
-     scale_fill_distiller(palette = "Spectral", name = "# of answers")+
+     scale_fill_distiller(palette="RdYlBu",name = "# of answers", breaks=c(10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000), guide=guide_colorbar(barwidth = 0.8, barheight = 18), trans = "log", limits=c(10, NA), direction=-1)+
      theme_void()
 
 ggplotly(p, tooltip="text")
