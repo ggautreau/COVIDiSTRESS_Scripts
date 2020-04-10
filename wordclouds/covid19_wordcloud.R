@@ -10,8 +10,8 @@ library("RColorBrewer")
 data = read.csv("../covid_06042020_numerical_values.csv", header=T, stringsAsFactors=F)
 
 #choose your language
-language="french"
-language2letters="FR"
+language="english"
+language2letters="EN"
 
 data = data[3:nrow(data),]
 
@@ -23,17 +23,8 @@ docs <- tm_map(docs, toSpace, "@")
 docs <- tm_map(docs, toSpace, "\\|")
 docs <- tm_map(docs, content_transformer(tolower))
 docs <- tm_map(docs, removeNumbers)
-docs <- tm_map(docs, removeWords, stopwords(language))#remove most of the not significant french words
-to_exclude <- c("plus", "jai", "fait", "faire", "bien", "très", "tout", "être", 
-"chez", "moins", "cest", "ça", "depuis", "donc", "comme", "avoir", 
-"car", "avant", "vis", "quand", "aussi", "dun", "dêtre", "alors", 
-"pendant", "prendre", "encore", "tous", "nest", "non", "j’ai", 
-"fois", "peux", "davoir", "peut", "fais", "nai", "où", "ans", 
-"assez", "mieux", "quil", "etc", "face", "trop", "dune", "déjà", 
-"entre", "cause", "dont", "fortement", "certains", "aucune", 
-"rester", "devoir", "rien", "cas", "chose", "jamais", "après", 
-"loin", "notamment", "autre", "tant", "besoin", "permet", "plusieurs", 
-"c’est", "deux", "part", "grande")#other not significant french word
+docs <- tm_map(docs, removeWords, stopwords(language))#remove most of the not significant words
+to_exclude <- c()#other not significant words
 docs <- tm_map(docs, removeWords, to_exclude)
 docs <- tm_map(docs, removePunctuation)
 docs <- tm_map(docs, stripWhitespace)
