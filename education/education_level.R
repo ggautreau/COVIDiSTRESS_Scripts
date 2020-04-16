@@ -25,7 +25,7 @@ education_plot <- function(country_list){
     processed_data$Country <- factor(processed_data$Country, levels = rev(country_list))
     processed_data$Dem_edu <- factor(processed_data$Dem_edu, levels = rev(education))
 
-    p <- ggplot(data = processed_data) +
+    pEdu <- ggplot(data = processed_data) +
         geom_bar(aes(x = Country, y = perc_surveyed_by_country, fill = Dem_edu, text = country_edu_text), stat="identity", size=0.5, color="grey20") +
         scale_fill_manual(name="Education", values=c("- PhD/Doctorate" = "#31233bff", "- College degree, bachelor, master" = "#50456cff","- Some College, short continuing education or equivalent" = "#6b6099ff","- Up to 12 years of school " = "#9392b7ff","- Up to 9 years of school" = "#b0b0d1ff","- Up to 6 years of school" = "#bec0d4ff", "- None" = "#f8f8ffff")) +
         coord_flip() +
@@ -35,7 +35,7 @@ education_plot <- function(country_list){
         theme_classic() +
         theme(legend.position="top")
 
-    return(ggplotly(p, tooltip = "text"))
+    return(pEdu)
 }
 
 #test
