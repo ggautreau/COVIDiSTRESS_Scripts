@@ -91,7 +91,7 @@ trust_map <- function(world="world"){
 
     p <- ggplot(as.data.frame(processed_world_map)) +
         geom_polygon(aes( x = long, y = lat, group = group, fill = mean_trust_score, text = country_text), colour = "black", size = 0.2)+
-        scale_fill_distiller(palette="RdYlBu", name = "trust score", limits = c(0, 10), breaks = 0:10, labels= c("0 - Too little","1","2","3","4","5 - Appropriate","6","7","8","9","10 - Too mush"))+
+        scale_fill_distiller(palette="RdYlBu", name = "Appropriate measure score", limits = c(0, 10), breaks = 0:10, labels= c("0 - Too little","1","2","3","4","5 - Appropriate","6","7","8","9","10 - Too mush"))+
         theme_void()
 }
 
