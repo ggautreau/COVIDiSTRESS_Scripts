@@ -33,7 +33,7 @@ trust_map <- function(world="world"){
 
     p <- ggplot(as.data.frame(processed_world_map)) +
         geom_polygon(aes( x = long, y = lat, group = group, fill = mean_trust_score, text = country_text), colour = "black", size = 0.2)+
-        scale_fill_distiller(palette="RdYlBu", name = "All things considered, do you believe that\nthe government has taken the appropriate\n measures in response to Coronavirus ?", limits = c(0, 10), breaks = 0:10, labels= c("0 - Too little","1","2","3","4","5 - Appropriate","6","7","8","9","10 - Too mush"))+
+        scale_fill_distiller(palette="RdYlBu", name = "All things considered, do you believe that\nthe government has taken the appropriate\n measures in response to Coronavirus ?", limits = c(0, 10), breaks = 0:10, labels= c("0 - Too little","1","2","3","4","5 - Appropriate","6","7","8","9","10 - Too mush")) +
         theme_void()
 }
 
@@ -42,9 +42,9 @@ world_map_2_trust <- ggplotly(trust_map(world="world2"))
 
 save(world_map_1_trust,
      world_map_2_trust,
-     file="world_maps_concern.Rdata")
+     file="world_maps_trust.Rdata")
 
-#load("world_maps_concern.Rdata")
+#load("world_maps_trust.Rdata")
 
 #europe
 #world_map_1_trust %>% layout(xaxis=list(range = c(-25,50)),yaxis=list(range = c(33,72)))
