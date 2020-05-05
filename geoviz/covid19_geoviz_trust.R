@@ -37,8 +37,8 @@ trust_map <- function(world="world"){
         theme_void()
 }
 
-world_map_1_trust <- ggplotly(trust_map())
-world_map_2_trust <- ggplotly(trust_map(world="world2"))
+world_map_1_trust <- ggplotly(trust_map(), tooltip="text")
+world_map_2_trust <- ggplotly(trust_map(world="world2"), tooltip="text")
 
 save(world_map_1_trust,
      world_map_2_trust,

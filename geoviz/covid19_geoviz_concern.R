@@ -64,17 +64,17 @@ concern_map <- function(world="world", who="himself"){
         theme_void()
 }
 
-world_map_1_concern_himself <- ggplotly(concern_map(who="himself"))
-world_map_1_concern_friend <- ggplotly(concern_map(who="friend"))
-world_map_1_concern_family <- ggplotly(concern_map(who="family"))
-world_map_1_concern_country <- ggplotly(concern_map(who="country"))
-world_map_1_concern_othercountries <- ggplotly(concern_map(who="othercountries"))
+world_map_1_concern_himself <- ggplotly(concern_map(who="himself"), tooltip="text")
+world_map_1_concern_friend <- ggplotly(concern_map(who="friend"), tooltip="text")
+world_map_1_concern_family <- ggplotly(concern_map(who="family"), tooltip="text")
+world_map_1_concern_country <- ggplotly(concern_map(who="country"), tooltip="text")
+world_map_1_concern_othercountries <- ggplotly(concern_map(who="othercountries"), tooltip="text")
 
-world_map_2_concern_himself <- ggplotly(concern_map(who="himself",world="world2"))
-world_map_2_concern_friend <- ggplotly(concern_map(who="friend",world="world2"))
-world_map_2_concern_family <- ggplotly(concern_map(who="family",world="world2"))
-world_map_2_concern_country <- ggplotly(concern_map(who="country",world="world2"))
-world_map_2_concern_othercountries <- ggplotly(concern_map(who="othercountries",world="world2"))
+world_map_2_concern_himself <- ggplotly(concern_map(who="himself",world="world2"), tooltip="text")
+world_map_2_concern_friend <- ggplotly(concern_map(who="friend",world="world2"), tooltip="text")
+world_map_2_concern_family <- ggplotly(concern_map(who="family",world="world2"), tooltip="text")
+world_map_2_concern_country <- ggplotly(concern_map(who="country",world="world2"), tooltip="text")
+world_map_2_concern_othercountries <- ggplotly(concern_map(who="othercountries",world="world2"), tooltip="text")
 
 save(world_map_1_concern_himself,
      world_map_1_concern_friend,

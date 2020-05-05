@@ -39,8 +39,8 @@ isolation_map <- function(world="world"){
 
 }
 
-world_map_1_isolation <- ggplotly(isolation_map())
-world_map_2_isolation <- ggplotly(isolation_map(world="world2"))
+world_map_1_isolation <- ggplotly(isolation_map(), tooltip="text")
+world_map_2_isolation <- ggplotly(isolation_map(world="world2"), tooltip="text")
 
 save(world_map_1_isolation, world_map_2_isolation,file="world_maps_isolation.Rdata")
 

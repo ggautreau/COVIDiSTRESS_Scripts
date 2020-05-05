@@ -36,8 +36,8 @@ stress_map <- function(world="world"){
         scale_fill_distiller(palette="RdYlBu", name = "stress score")+
         theme_void()
 }
-world_map_1_stress <- ggplotly(stress_map())
-world_map_2_stress <- ggplotly(stress_map(world="world2"))
+world_map_1_stress <- ggplotly(stress_map(), tooltip="text")
+world_map_2_stress <- ggplotly(stress_map(world="world2"), , tooltip="text")
 
 save(world_map_1_stress, world_map_2_stress,file="world_maps_stress.Rdata")
 
