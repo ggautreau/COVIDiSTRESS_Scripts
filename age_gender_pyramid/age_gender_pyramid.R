@@ -3,7 +3,6 @@ library(plotly)
 library(stringr)
 
 data <- read.csv("../covid_06042020_choice_values.csv", header = T, stringsAsFactors = F)
-data <- data[3:nrow(data),]
 
 age_gender_pyramid <- function(country_list){
   processed_data <- data[data$Country%in%country_list,]

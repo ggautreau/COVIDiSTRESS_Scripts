@@ -2,8 +2,7 @@ library(ggplot2)
 library(plotly)
 library(dplyr)
 
-data <- read.csv("../covid_06042020_choice_values.csv", header = T, stringsAsFactors = F)
-data <- data[3:nrow(data),]
+data <- read.csv("../COVIDiSTRESS_May_04_clean.csv", header = T, stringsAsFactors = F)
 
 gender_plot <- function(country_list){
     
