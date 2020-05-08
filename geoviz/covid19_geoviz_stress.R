@@ -37,7 +37,7 @@ stress_map <- function(world="world"){
         theme_void()
 }
 world_map_1_stress <- ggplotly(stress_map(), tooltip="text")
-world_map_2_stress <- ggplotly(stress_map(world="world2"), , tooltip="text")
+world_map_2_stress <- ggplotly(stress_map(world="world2"), tooltip="text")
 
 save(world_map_1_stress, world_map_2_stress,file="world_maps_stress.Rdata")
 
