@@ -6,6 +6,8 @@ library(dplyr)
 library(countrycode)
 library(wpp2019)
 data(pop)
+data(e0F)
+data(e0M)
 
 args <- commandArgs(TRUE)
 args <-
@@ -55,7 +57,9 @@ concern_map <- function() {
         destination = "un",
         custom_match = c("SSD" = 728, "TWN" = 158)
       ),
-      population_2020 = pop[match(Country_code, pop$country_code), "2020"]
+      population_2020 = pop[match(Country_code, pop$country_code), "2020"],
+      life_expectancy_M = e0M[match(Country_code, e0M$country_code), "2015-2020"],
+      life_expectancy_F = e0F[match(Country_code, e0F$country_code), "2015-2020"],
     )
   
   
@@ -95,8 +99,10 @@ concern_map <- function() {
         "Std dev. concern score for other countries: ",
         round(sd_concern_score_othercountries, 2),
         "\n",
-        "population size: ",
+        "Population size: ",
         format(round(population_2020), big.mark = " "),
+        "\n",
+        "Life expectancy: Male=", round(life_expectancy_M,1), " ; Female=", round(life_expectancy_F,1),
         "\n",
         "# of answers: ",
         nb_answers,
@@ -155,8 +161,10 @@ concern_map <- function() {
         "Std dev. concern score for other countries: ",
         round(sd_concern_score_othercountries, 2),
         "\n",
-        "population size: ",
+        "Population size: ",
         format(round(population_2020), big.mark = " "),
+        "\n",
+        "Life expectancy: Male=", round(life_expectancy_M,1), " ; Female=", round(life_expectancy_F,1),
         "\n",
         "# of answers: ",
         nb_answers,
@@ -216,8 +224,10 @@ concern_map <- function() {
         "Std dev. concern score for other countries: ",
         round(sd_concern_score_othercountries, 2),
         "\n",
-        "population size: ",
+        "Population size: ",
         format(round(population_2020), big.mark = " "),
+        "\n",
+        "Life expectancy: Male=", round(life_expectancy_M,1), " ; Female=", round(life_expectancy_F,1),
         "\n",
         "# of answers: ",
         nb_answers,
@@ -277,8 +287,10 @@ concern_map <- function() {
         "Std dev. concern score for other countries: ",
         round(sd_concern_score_othercountries, 2),
         "\n",
-        "population size: ",
+        "Population size: ",
         format(round(population_2020), big.mark = " "),
+        "\n",
+        "Life expectancy: Male=", round(life_expectancy_M,1), " ; Female=", round(life_expectancy_F,1),
         "\n",
         "# of answers: ",
         nb_answers,
@@ -338,8 +350,10 @@ concern_map <- function() {
         "Std dev. concern score for other countries: ",
         round(sd_concern_score_othercountries, 2),
         "</b>\n",
-        "population size: ",
+        "Population size: ",
         format(round(population_2020), big.mark = " "),
+        "\n",
+        "Life expectancy: Male=", round(life_expectancy_M,1), " ; Female=", round(life_expectancy_F,1),
         "\n",
         "# of answers: ",
         nb_answers,
@@ -410,3 +424,4 @@ fig_concern_asia = fig_concern %>% layout(geo = list(scope = 'asia'))
 fig_concern_europe = fig_concern %>% layout(geo = list(scope = 'europe'))
 fig_concern_north_america = fig_concern %>% layout(geo = list(scope = 'north america'))
 fig_concern_south_america = fig_concern %>% layout(geo = list(scope = 'south america'))
+fig_concern_oceania = fig_concern %>% layout(geo = list(projection = list(rotation = list(lon=-180,lat=-20),scale=1.7)))
